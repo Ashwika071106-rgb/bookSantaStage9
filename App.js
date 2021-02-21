@@ -1,11 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {createAppContainer,createSwitchNavigator} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
+
 import WelcomeScreen from './screens/WelcomeScreen';
+import {AppDrawerNavigator} from './components/AppDrawerNavigator';
+import {AppTabNavigator} from './components/AppTabNavigator'
 
 export default function App() {
     return(
-      <WelcomeScreen/>
+      <AppContainer/>
     );
 }
+const switchNavigator = createSwitchNavigator({
+  WelcomeScreen:{screen: WelcomeScreen},
+  Drawer:{screen: AppDrawerNavigator},
+  BottomTab: {screen: AppTabNavigator},
+})
 
+const AppContainer =  createAppContainer(switchNavigator);
